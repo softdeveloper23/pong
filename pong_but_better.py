@@ -17,7 +17,7 @@ BLACK = (0, 0, 0)
 # Ball
 radius = 15
 ball_x, ball_y = WIDTH / 2 - radius, HEIGHT / 2 - radius
-ball_vel_x, ball_vel_y = 0.3, 0.3
+ball_vel_x, ball_vel_y = 0.2, 0.2
 
 # Paddles
 paddle_width, paddle_height = 20, 120
@@ -34,6 +34,13 @@ while run:
     # Ball movement control
     if ball_y <= 0 + radius or ball_y >= HEIGHT - radius:
         ball_vel_y *= -1
+    if ball_x >= WIDTH - radius:
+        ball_x, ball_y = WIDTH / 2 - radius, HEIGHT / 2 - radius
+        ball_vel_x *= -1
+        ball_vel_y *= -1
+    if ball_x <= 0 + radius:
+        ball_x, ball_y = WIDTH / 2 - radius, HEIGHT / 2 - radius
+        ball_vel_x, ball_vel_y = 0.2, 0.2
 
     # Movement
     ball_x += ball_vel_x
