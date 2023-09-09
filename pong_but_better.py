@@ -69,10 +69,25 @@ while run:
             if ang == 2:
                 ball_vel_y, ball_vel_x = 0.7, 1.4
         ball_vel_x *= -1
-        ball_vel_y *= -1
+
     if ball_x <= 0 + radius:
         ball_x, ball_y = WIDTH / 2 - radius, HEIGHT / 2 - radius
-        ball_vel_x, ball_vel_y = 0.2, 0.2
+        dir = random.choice(direction)
+        ang = random.choice(angle)
+        if dir == 0:
+            if ang == 0:
+                ball_vel_y, ball_vel_x = -1.4, 0.7
+            if ang == 1:
+                ball_vel_y, ball_vel_x = -0.7, 0.7
+            if ang == 2:
+                ball_vel_y, ball_vel_x = -0.7, 1.4
+        if dir == 1:
+            if ang == 0:
+                ball_vel_y, ball_vel_x = 1.4, 0.7
+            if ang == 1:
+                ball_vel_y, ball_vel_x = 0.7, 0.7
+            if ang == 2:
+                ball_vel_y, ball_vel_x = 0.7, 1.4
 
     # Paddle movement control
     if left_paddle_y >= HEIGHT - paddle_height:
