@@ -120,7 +120,13 @@ while run:
             ball_vel_x *= -1
 
     # Gadgets in action
-
+    if left_gadget == 1:
+        if left_paddle_x <= ball_x <= left_paddle_x + paddle_width:
+            if left_paddle_y <= ball_y <= left_paddle_y + paddle_height:
+                ball_x = left_paddle_x + paddle_width
+                ball_vel_x *= -3.5
+                left_gadget = 0
+                left_gadget_remaining -= 1
     # Movement
     ball_x += ball_vel_x
     ball_y += ball_vel_y
