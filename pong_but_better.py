@@ -21,11 +21,15 @@ radius = 15
 ball_x, ball_y = WIDTH / 2 - radius, HEIGHT / 2 - radius
 ball_vel_x, ball_vel_y = 0.2, 0.2
 
-# Paddles
+# Paddle dimensions
 paddle_width, paddle_height = 20, 120
 left_paddle_y = right_paddle_y = HEIGHT / 2 - paddle_height / 2
 left_paddle_x, right_paddle_x = 100 - paddle_width / 2, WIDTH - (100 - paddle_width / 2)
 right_paddle_vel = left_paddle_vel = 0
+
+# Gadgets
+left_gadget = right_gadget = 0
+left_gadget_remaining = right_gadget_remaining = 5
 
 # Main loop
 while run:
