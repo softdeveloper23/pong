@@ -64,18 +64,18 @@ while run:
         ang = random.choice(angle)
         if dir == 0:
             if ang == 0:
-                ball_vel_y, ball_vel_x = -1.4, 0.7
+                ball_vel_y, ball_vel_x = -0.5, 0.2
             if ang == 1:
-                ball_vel_y, ball_vel_x = -0.7, 0.7
+                ball_vel_y, ball_vel_x = -0.2, 0.2
             if ang == 2:
-                ball_vel_y, ball_vel_x = -0.7, 1.4
+                ball_vel_y, ball_vel_x = -0.2, 0.5
         if dir == 1:
             if ang == 0:
-                ball_vel_y, ball_vel_x = 1.4, 0.7
+                ball_vel_y, ball_vel_x = 0.5, 0.2
             if ang == 1:
-                ball_vel_y, ball_vel_x = 0.7, 0.7
+                ball_vel_y, ball_vel_x = 0.2, 0.2
             if ang == 2:
-                ball_vel_y, ball_vel_x = 0.7, 1.4
+                ball_vel_y, ball_vel_x = 0.2, 0.5
         ball_vel_x *= -1
 
     if ball_x <= 0 + radius:
@@ -84,18 +84,18 @@ while run:
         ang = random.choice(angle)
         if dir == 0:
             if ang == 0:
-                ball_vel_y, ball_vel_x = -1.4, 0.7
+                ball_vel_y, ball_vel_x = -0.5, 0.2
             if ang == 1:
-                ball_vel_y, ball_vel_x = -0.7, 0.7
+                ball_vel_y, ball_vel_x = -0.2, 0.2
             if ang == 2:
-                ball_vel_y, ball_vel_x = -0.7, 1.4
+                ball_vel_y, ball_vel_x = -0.2, 0.5
         if dir == 1:
             if ang == 0:
-                ball_vel_y, ball_vel_x = 1.4, 0.7
+                ball_vel_y, ball_vel_x = 0.5, 0.2
             if ang == 1:
-                ball_vel_y, ball_vel_x = 0.7, 0.7
+                ball_vel_y, ball_vel_x = 0.2, 0.2
             if ang == 2:
-                ball_vel_y, ball_vel_x = 0.7, 1.4
+                ball_vel_y, ball_vel_x = 0.2, 0.5
 
     # Paddle movement control
     if left_paddle_y >= HEIGHT - paddle_height:
@@ -127,6 +127,14 @@ while run:
                 ball_vel_x *= -3.5
                 left_gadget = 0
                 left_gadget_remaining -= 1
+    if right_gadget == 1:
+        if right_paddle_x <= ball_x <= right_paddle_x + paddle_width:
+            if right_paddle_y <= ball_y <= right_paddle_y + paddle_height:
+                ball_x = right_paddle_x
+                ball_vel_x *= -3.5
+                right_gadget = 0
+                right_gadget_remaining -= 1
+
     # Movement
     ball_x += ball_vel_x
     ball_y += ball_vel_y
