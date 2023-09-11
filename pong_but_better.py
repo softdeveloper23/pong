@@ -3,6 +3,13 @@ import random
 
 pygame.init()
 
+gadget_pair = 1
+ch = int(input("Enter your choice for the gadget pair: "))
+if ch == 1:
+    gadget_pair = 1
+elif ch == 2:
+    gadget_pair = 2
+
 # INITIALS
 WIDTH, HEIGHT = 1000, 600
 wn = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -21,6 +28,8 @@ WHITE = (255, 255, 255)
 radius = 15
 ball_x, ball_y = WIDTH / 2 - radius, HEIGHT / 2 - radius
 ball_vel_x, ball_vel_y = 0.2, 0.2
+dummy_ball_x, dummy_ball_y = WIDTH / 2 - radius, HEIGHT / 2 - radius
+dummy_ball_vel_x, dummy_ball_vel_y = 0.2, 0.2
 
 # Paddle dimensions
 paddle_width, paddle_height = 20, 120
@@ -63,44 +72,61 @@ while run:
     # Ball movement control
     if ball_y <= 0 + radius or ball_y >= HEIGHT - radius:
         ball_vel_y *= -1
+    if dummy_ball_y <= 0 + radius or dummy_ball_y >= HEIGHT - radius:
+        dummy_ball_vel_y *= -1
     if ball_x >= WIDTH - radius:
         ball_x, ball_y = WIDTH / 2 - radius, HEIGHT / 2 - radius
+        dummy_ball_x, dummy_ball_y = WIDTH / 2 - radius, HEIGHT / 2 - radius
         dir = random.choice(direction)
         ang = random.choice(angle)
         if dir == 0:
             if ang == 0:
                 ball_vel_y, ball_vel_x = -0.5, 0.2
+                dummy_ball_vel_y, dummy_ball_vel_x = -0.5, 0.2
             if ang == 1:
                 ball_vel_y, ball_vel_x = -0.2, 0.2
+                dummy_ball_vel_y, dummy_ball_vel_x = -0.2, 0.2
             if ang == 2:
                 ball_vel_y, ball_vel_x = -0.2, 0.5
+                dummy_ball_vel_y, dummy_ball_vel_x = -0.2, 0.5
         if dir == 1:
             if ang == 0:
                 ball_vel_y, ball_vel_x = 0.5, 0.2
+                dummy_ball_vel_y, dummy_ball_vel_x = 0.5, 0.2
             if ang == 1:
                 ball_vel_y, ball_vel_x = 0.2, 0.2
+                dummy_ball_vel_y, dummy_ball_vel_x = 0.2, 0.2
             if ang == 2:
                 ball_vel_y, ball_vel_x = 0.2, 0.5
+                dummy_ball_vel_y, dummy_ball_vel_x = 0.2, 0.5
         ball_vel_x *= -1
+        dummy_ball_vel_x *= -1
 
     if ball_x <= 0 + radius:
         ball_x, ball_y = WIDTH / 2 - radius, HEIGHT / 2 - radius
+        dummy_ball_x, dummy_ball_y = WIDTH / 2 - radius, HEIGHT / 2 - radius
         dir = random.choice(direction)
         ang = random.choice(angle)
         if dir == 0:
             if ang == 0:
                 ball_vel_y, ball_vel_x = -0.5, 0.2
+                dummy_ball_vel_y, dummy_ball_vel_x = -0.5, 0.2
             if ang == 1:
                 ball_vel_y, ball_vel_x = -0.2, 0.2
+                dummy_ball_vel_y, dummy_ball_vel_x = -0.2, 0.2
             if ang == 2:
                 ball_vel_y, ball_vel_x = -0.2, 0.5
+                dummy_ball_vel_y, dummy_ball_vel_x = -0.2, 0.5
         if dir == 1:
             if ang == 0:
                 ball_vel_y, ball_vel_x = 0.5, 0.2
+                dummy_ball_vel_y, dummy_ball_vel_x = 0.5, 0.2
             if ang == 1:
                 ball_vel_y, ball_vel_x = 0.2, 0.2
+                dummy_ball_vel_y, dummy_ball_vel_x = 0.2, 0.2
             if ang == 2:
                 ball_vel_y, ball_vel_x = 0.2, 0.5
+                dummy_ball_vel_y, dummy_ball_vel_x = 0.2, 0.5
 
     # Paddle movement control
     if left_paddle_y >= HEIGHT - paddle_height:
@@ -117,12 +143,16 @@ while run:
     if left_paddle_x <= ball_x <= left_paddle_x + paddle_width:
         if left_paddle_y <= ball_y <= left_paddle_y + paddle_height:
             ball_x = left_paddle_x + paddle_width
+            dummy_ball_x = left_paddle_x + paddle_width
             ball_vel_x *= -1
+            dummy_ball_vel_x *= -1
     # Right paddle
     if right_paddle_x <= ball_x <= right_paddle_x + paddle_width:
         if right_paddle_y <= ball_y <= right_paddle_y + paddle_height:
             ball_x = right_paddle_x
+            dummy_ball_x = right_paddle_x
             ball_vel_x *= -1
+            dummy_ball_vel_x *= -1
 
     # Gadgets in action
     if left_gadget == 1:
