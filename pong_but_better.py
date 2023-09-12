@@ -175,6 +175,7 @@ while run:
                     ball_vel_x *= -3.5
                     right_gadget = 0
                     right_gadget_remaining -= 1
+        # Second pair
         elif right_gadget == 2:
             right_paddle_y = ball_y
             right_gadget = 0
@@ -187,13 +188,25 @@ while run:
                         dummy_ball_x = left_paddle_x + paddle_width
                         ball_vel_x *= -1
                         dummy_ball_vel_x *= -1
-                        dummy_ball_vel_y *= -2
+                        dummy_ball_vel_y *= -1
                         left_gadget = 0
                         left_gadget_remaining -= 1
+            if right_gadget == 1:
+                if right_paddle_x <= ball_x <= right_paddle_x + paddle_width:
+                    if right_paddle_y <= ball_y <= right_paddle_y + paddle_height:
+                        ball_x = right_paddle_x
+                        dummy_ball_x = right_paddle_x
+                        ball_vel_x *= -1
+                        dummy_ball_vel_x *= -1
+                        dummy_ball_vel_y *= -1
+                        right_gadget = 0
+                        right_gadget_remaining -= 1
 
     # Movement
     ball_x += ball_vel_x
     ball_y += ball_vel_y
+    dummy_ball_x += dummy_ball_vel_x
+    dummy_ball_y += dummy_ball_vel_y
     right_paddle_y += right_paddle_vel
     left_paddle_y += left_paddle_vel
 
@@ -207,6 +220,10 @@ while run:
         RED,
         pygame.Rect(right_paddle_x, right_paddle_y, paddle_width, paddle_height),
     )
+
+    # Dummy ball section
+    pygame.draw.circle(wn, BLUE, (dummy_ball_x, dummy_ball_y), radius)
+
     # Gadget activated indicator
     if left_gadget == 1:
         pygame.draw.circle(wn, WHITE, (left_paddle_x + 10, left_paddle_y + 10), 4)
